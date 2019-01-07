@@ -534,12 +534,39 @@
 		overflow:hidden;
 		z-index:1;
 	}
+	#img4{
+		position:absolute;
+		left: 450px;
+		top: 0px; 
+		width:410px;
+		height:410px;
+		overflow:hidden;
+		z-index:2;
+		display:none;
+	}
 	#Bimg{
 		position:absolute;
 		left:0;
 		top:0;
 	}
+	#Bimg1{
+		position:absolute;
+		left:0;
+		top:0;
+	}
 	#slider{
+		width:150px;
+		height:150px;
+		position:absolute;
+		left:0;
+		top:0;
+		background:#CCC;
+		opacity:0.4;
+		cursor: move;
+		display:none; 
+		filter:alpha(opacity=40);
+	}
+	#slider1{
 		width:150px;
 		height:150px;
 		position:absolute;
@@ -558,6 +585,14 @@
 		left:0;
 		top:0;
 	}
+	#img3{
+		width:410px;
+		height:410px;
+		position:absolute;
+		left:0;
+		top:0;
+		display: none;
+	}
 	#center7{
 		width: 410px;
 		height: 410px;
@@ -565,6 +600,15 @@
 		margin-left: 23px;
 		position: relative;
 		float: left;
+	}
+	#center50{
+		width: 410px;
+		height: 410px;
+		margin-top: 23px;
+		margin-left: 23px;
+		position: relative;
+		float: left;
+		display: none;	
 	}
 		#popLayer {
             display: none;
@@ -679,6 +723,24 @@
 		font-size: 12px;
 		margin-top: 14px;
 	}
+	#abc1{
+		width: auto;
+		height: auto;
+		position: relative;
+		float: left;
+	}
+	#abc2{
+		width: auto;
+		height: auto;
+		position: relative;
+		float: left;
+	}
+	#abc3{
+		width: auto;
+		height: auto;
+		position: relative;
+		float: left;
+	}
 	</style>
 </head>
 <body>
@@ -754,9 +816,13 @@
 <div id="center5">
 	<div id="center7">
 	<div id="img1"><img src="pp0.jpeg"><div id="slider"></div></div>
+	<div id="img3"><img src="pp1.jpeg"><div id="slider1"></div></div>
 	</div>
 	<div id="img2">
         <img src="pp0.jpeg" height="816" width="816"  id="Bimg">
+    </div>
+    <div id="img4">
+    	<img src="pp1.jpeg" height="816" width="816" id="Bimg1">
     </div>
 	<div id="center8">
 		<div id="center11">韩国 RE:CIPE 水晶清爽防水防晒喷雾SPF50 150ml/瓶</div>
@@ -816,8 +882,12 @@
 			</div>
 		</div>
 	</div>
-	<div id="center9"><img src="spanl.jpg"><img src="sp0.jpeg">
-	<img src="sp1.jpeg"><div id="center10"><img src="spanr.jpg"></div></div>
+	<div id="center9">
+	<div id="abc1"><img src="spanl.jpg"></div>
+	<div id="abc2"><img src="sp0.jpeg"></div>
+	<div id="abc3"><img src="sp1.jpeg"></div>
+	<div id="center10"><img src="spanr.jpg"></div>
+	</div>
 </div>
 <div id="center6"><img src="ww_07.jpg"></div>
 </div>
@@ -918,20 +988,20 @@
 	var img2 = document.getElementById("img2");
 	var slider = document.getElementById("slider");
 	var Bimg = document.getElementById("Bimg");
-	var center7 = document.getElementById("center7"); 
-	center7.onmouseover=function(){
+	var img1 = document.getElementById("img1"); 
+	img1.onmouseover=function(){
 	    slider.style.display='block';
 		img2.style.display='block';
  	}
-	center7.onmouseout=function(){
+	img1.onmouseout=function(){
 	    slider.style.display='none';
 		img2.style.display='none';
  	}
-    center7.onmousemove=function(ev){
+    img1.onmousemove=function(ev){
 		var ev=ev||event;
 		  
-		var oL=ev.clientX-center7.offsetLeft-slider.offsetWidth/2;
-		var oT=ev.clientY-center7.offsetTop-slider.offsetHeight/2;
+		var oL=ev.clientX-img1.offsetLeft-slider.offsetWidth/2;
+		var oT=ev.clientY-img1.offsetTop-slider.offsetHeight/2;
 		  
 		var oMaxw=img1.offsetWidth-slider.offsetWidth;
 		var oMaxh=img1.offsetHeight-slider.offsetHeight;
@@ -946,6 +1016,38 @@
 		var oBmaxh = img2.offsetHeight - Bimg.offsetHeight; 
 		Bimg.style.left = ( oL/oMaxw ) * oBmaxw + 'px'
 		Bimg.style.top = ( oT/oMaxh ) * oBmaxh + 'px'
+	}
+	var img3 = document.getElementById("img3");
+	var slider1 = document.getElementById("slider1");
+	var Bimg1 = document.getElementById("Bimg1");
+	var img4 = document.getElementById("img4");
+	img3.onmouseover=function(){
+	    slider1.style.display='block';
+		img4.style.display='block';
+ 	}
+	img3.onmouseout=function(){
+	    slider1.style.display='none';
+		img4.style.display='none';
+ 	}
+    img3.onmousemove=function(av){
+		var av=av||event;
+		  
+		var OL=av.clientX-img3.offsetLeft-slider1.offsetWidth/2;
+		var OT=av.clientY-img3.offsetTop-slider1.offsetHeight/2;
+		  
+		var OMaxw=img3.offsetWidth-slider1.offsetWidth;
+		var OMaxh=img3.offsetHeight-slider1.offsetHeight;
+		  
+		OL=OL>OMaxw?OMaxw:OL<0?0:OL;
+		OT=OT>OMaxh?OMaxh:OT<0?0:OT;
+		
+		slider1.style.left = OL+'px';
+		slider1.style.top = OT+'px';
+		
+		var OBmaxw = img4.offsetWidth - Bimg1.offsetWidth; 
+		var OBmaxh = img4.offsetHeight - Bimg1.offsetHeight; 
+		Bimg1.style.left = ( OL/OMaxw ) * OBmaxw + 'px'
+		Bimg1.style.top = ( OT/OMaxh ) * OBmaxh + 'px'
 	}
 	function popBox() {
         var  popBox= document.getElementById("popBox");
@@ -981,7 +1083,16 @@
 					}
 				}				
 			}
-
+			var abc3=document.getElementById("abc3");
+			var img3=document.getElementById("img3");
+			abc3.onmouseover=function(){
+				img3.style.display='block';
+				img1.style.display='none';
+			}
+			abc2.onmouseover=function(){
+				img1.style.display='block';
+				img3.style.display='none';
+			}
 	</script>
 </body>
 </html>
